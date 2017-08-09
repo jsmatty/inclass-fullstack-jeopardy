@@ -20,10 +20,11 @@ connection.on('error', (err) => {
 })
 
 app.use(bodyParser.json());
+app.use(express.static(_dirname + '/client/build/'));
 
 app.use("/api/game", GamesController);
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.sendFile(_dirname + "/client/build/index.html");
 });
 
 const PORT = process.env.PORT || 3001;

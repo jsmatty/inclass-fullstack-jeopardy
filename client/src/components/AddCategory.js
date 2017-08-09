@@ -4,10 +4,10 @@ class AddComponent extends Component {
   render() {
     return (
       <div>
-        Hello from AddCategory
+        Hello from AddCategory       
       </div>
     );
   }
 }
 
-export default componentName;
+export default AddComponent;
