@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const GamesController = require("./controllers/game");
 const app = express();
 
 mongoose.Promise = global.Promise;
@@ -20,11 +21,12 @@ connection.on('error', (err) => {
 
 app.use(bodyParser.json());
 
+app.use("/api/game", GamesController);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log("App is listening on: " + PORT);
 })
