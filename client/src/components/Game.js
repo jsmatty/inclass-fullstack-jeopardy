@@ -19,6 +19,7 @@ class Game extends Component {
     const id = this.props.match.params.gameId;
     axios.get(`/api/game/${id}`).then((res) => {
       this.setState({
+        //pulling from specific object//
         id: res.data._id,
         user: res.data.user,
         points: res.data.points,
@@ -42,6 +43,7 @@ class Game extends Component {
     const payload = {
       points: newState.points
     };
+    
     axios.put(`/api/game/${this.state.id}`, payload).then((res) => {
       console.log("Successfully Updated")
       this.setState(newState);

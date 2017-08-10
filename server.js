@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const GamesController = require("./controllers/game");
+const CategoryController = require("./controllers/category");
 const app = express();
 
 mongoose.Promise = global.Promise;
@@ -20,14 +21,15 @@ connection.on('error', (err) => {
 })
 
 app.use(bodyParser.json());
-app.use(express.static(_dirname + '/client/build/'));
+app.use(express.static(__dirname + '/client/build/'));
 
+app.use("/api/category", CategoriesController);
 app.use("/api/game", GamesController);
 app.get("/", (req, res) => {
-  res.sendFile(_dirname + "/client/build/index.html");
+  res.sendFile(__dirname + "/client/build/index.html");
 });
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log("App is listening on: " + PORT);
-})
+});
